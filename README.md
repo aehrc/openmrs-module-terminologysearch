@@ -4,9 +4,14 @@ A module for OpenMRS to search a FHIR terminology server for concepts.
 
 ## Description
 
-Proof of concept module for search a FHIR based terminology server for SNOMED CT concepts.
+A module for searching a FHIR based terminology server for SNOMED CT concepts based on a [FHIR ValueSet](https://www.hl7.org/fhir/valueset.html).
+
+If a previously-unknown concept is selected by the user, then its details will be automatically retrieved
+from the terminology server and the Concept will be created in OpenMRS.
 
 ## Building from Source
+
+`mvn package`
 
 ## Installation
 
@@ -24,7 +29,8 @@ The module adds a new tag for to be used with the htmlform module:
 
 `terminologySearch`
 
-which enables the use of a FHIR Terminology server to enter (and dynamically create, if needed) SNOMED Codes from FHIR ValueSets using FHIR's ValueSet/$expand operation.
+which enables the use of a FHIR Terminology server to enter (and dynamically create, if needed)
+SNOMED Codes from FHIR ValueSets using FHIR's [/ValueSet/$expand](https://www.hl7.org/fhir/valueset-operation-expand.html) operation.
 
 Example usage is as follows:
 
