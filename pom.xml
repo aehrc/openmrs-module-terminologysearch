@@ -1,0 +1,264 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.openmrs.module</groupId>
+	<artifactId>terminologysearch</artifactId>
+	<version>0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>Terminology Search</name>
+	<description>OpenMRS module to query a FHIR terminology server for concepts.</description>
+
+	<modules>
+		<module>api</module>
+		<module>omod</module>
+	</modules>
+
+	<!--
+
+	addresshierarchy-2.14.2.omod        legacyui-1.8.0.omod
+adminui-1.4.0.omod                  metadatadeploy-1.12.1.omod
+allergyui-1.8.3.omod                metadatamapping-1.3.5.omod
+appframework-2.16.0.omod            metadatasharing-1.7.0.omod
+appointmentscheduling-1.13.0.omod   owa-1.12.0.omod
+appointmentschedulingui-1.9.0.omod  providermanagement-2.12.0.omod
+appui-1.13.0.omod                   referenceapplication-2.11.0.omod
+atlas-2.2.4.omod                    referencedemodata-1.4.6.omod
+attachments-2.4.0.omod              referencemetadata-2.11.0.omod
+calculation-1.2.1.omod              registrationapp-1.20.0.omod
+coreapps-1.31.0.omod                registrationcore-1.10.0.omod
+dataexchange-1.3.6.omod             reporting-1.21.0.omod
+emrapi-1.30.0.omod                  reportingcompatibility-2.0.7.omod
+event-2.8.0.omod                    reportingrest-1.11.0.omod
+fhir2-1.1.0.omod                    reportingui-1.7.0.omod
+formentryapp-1.4.2.omod             serialization.xstream-0.2.14.omod
+htmlformentry-3.12.0.omod           uicommons-2.15.0.omod
+htmlformentryui-1.11.2.omod         uiframework-3.19.0.omod
+htmlwidgets-1.10.0.omod             uilibrary-2.0.6.omod
+idgen-4.6.0.omod                    webservices.rest-2.29.0.omod
+
+-->
+    <properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.outputEncoding>UTF-8</project.build.outputEncoding>
+
+		<openMRSVersion>2.2.0</openMRSVersion>
+		<openmrsPlatformVersion>2.0.5</openmrsPlatformVersion>
+		<openmrsPlatformToolsVersion>2.4.0</openmrsPlatformToolsVersion>
+
+		<emrapiVersion>1.27.0</emrapiVersion>
+		<uiframeworkVersion>3.19.0</uiframeworkVersion>
+		<eventVersion>2.8.0</eventVersion>
+		<htmlformentryVersion>3.12.0</htmlformentryVersion>
+		<appuiVersion>1.13.0</appuiVersion>
+		<appframeworkVersion>2.16.0</appframeworkVersion>
+		<serialization.xstreamVersion>0.2.12</serialization.xstreamVersion>
+		<calculationVersion>1.2.1</calculationVersion>
+		<reportingVersion>1.21.0</reportingVersion>
+		<providermanagementVersion>2.9.0</providermanagementVersion>
+		<idgenVersion>4.4.0</idgenVersion>
+		<metadatamappingVersion>1.3.2</metadatamappingVersion>
+		<uicommonsVersion>2.15.0</uicommonsVersion>
+		<webservicesRestVersion>2.29.0</webservicesRestVersion>
+    </properties>
+
+
+	<repositories>
+		<repository>
+			<id>openmrs-repo</id>
+			<name>OpenMRS Public Repository</name>
+			<url>https://mavenrepo.openmrs.org/public</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>openmrs-snapshots</id>
+			<name>OpenMRS Snapshot Repository</name>
+			<url>https://mavenrepo.openmrs.org/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>central</id>
+			<name>Maven Repository Switchboard</name>
+			<url>https://repo1.maven.org/maven2</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>openmrs-repo</id>
+			<name>OpenMRS Public Repository</name>
+			<url>https://mavenrepo.openmrs.org/public</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>openmrs-snapshots</id>
+			<name>OpenMRS Snapshot Repository</name>
+			<url>https://mavenrepo.openmrs.org/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>central</id>
+			<name>Maven Repository Switchboard</name>
+			<url>https://repo1.maven.org/maven2</url>
+		</pluginRepository>
+	</pluginRepositories>
+	<distributionManagement>
+		<repository>
+			<id>openmrs-repo-modules</id>
+			<name>OpenMRS Nexus Modules</name>
+			<url>https://mavenrepo.openmrs.org/modules</url>
+		</repository>
+		<snapshotRepository>
+			<id>openmrs-repo-snapshots</id>
+			<name>OpenMRS Nexus Snapshots</name>
+			<url>https://mavenrepo.openmrs.org/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.openmrs.api</groupId>
+				<artifactId>openmrs-api</artifactId>
+				<version>${openMRSVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.web</groupId>
+				<artifactId>openmrs-web</artifactId>
+				<version>${openMRSVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.api</groupId>
+				<artifactId>openmrs-api</artifactId>
+				<version>${openMRSVersion}</version>
+				<type>test-jar</type>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.web</groupId>
+				<artifactId>openmrs-web</artifactId>
+				<version>${openMRSVersion}</version>
+				<type>test-jar</type>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.test</groupId>
+				<artifactId>openmrs-test</artifactId>
+				<version>${openMRSVersion}</version>
+				<type>pom</type>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>appframework-api</artifactId>
+				<version>${appframeworkVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>emrapi-api</artifactId>
+				<version>${emrapiVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>uiframework-api</artifactId>
+				<version>${uiframeworkVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>htmlformentry-api</artifactId>
+				<version>${htmlformentryVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.txt</include>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>**/*.xml</exclude>
+					<exclude>**/*.txt</exclude>
+					<exclude>**/*.properties</exclude>
+				</excludes>
+			</resource>
+
+			<resource>
+				<directory>src/main/webapp</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.txt</include>
+					<include>**/*.properties</include>
+				</includes>
+				<targetPath>web/module</targetPath>
+			</resource>
+			<resource>
+				<directory>src/main/webapp</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>**/*.xml</exclude>
+					<exclude>**/*.txt</exclude>
+					<exclude>**/*.properties</exclude>
+				</excludes>
+				<targetPath>web/module</targetPath>
+			</resource>
+		</resources>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.openmrs.maven.plugins</groupId>
+					<artifactId>maven-openmrs-plugin</artifactId>
+					<version>1.0.1</version>
+					<extensions>true</extensions>
+					<executions>
+						<execution>
+							<id>pack</id>
+							<phase>package</phase>
+							<goals>
+								<goal>package-module</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.2.0</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>test-jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>

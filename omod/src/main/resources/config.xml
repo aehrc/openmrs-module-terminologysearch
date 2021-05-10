@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module configVersion="1.2">
+	
+	<!-- Base Module Properties -->
+	<id>${project.parent.artifactId}</id>
+	<name>${project.parent.name}</name>
+	<version>${project.parent.version}</version>
+	<package>org.openmrs.module.terminologysearchmodule</package>
+	<author>David Conlan</author>
+	<description>
+			${project.parent.description}
+	</description>
+
+
+	<require_module version="${appframeworkVersion}">
+		org.openmrs.module.appframework
+	</require_module>
+
+	<require_module version="${uiframeworkVersion}">
+		org.openmrs.module.uiframework
+	</require_module>
+
+<!--	<require_module version="${htmlformentryVersion}">-->
+<!--		org.openmrs.module.htmlformentry-->
+<!--	</require_module>-->
+
+	<aware_of_modules>
+		<aware_of_module version="${htmlformentryVersion}">
+			org.openmrs.module.htmlformentry
+		</aware_of_module>
+	</aware_of_modules>
+
+	<activator>org.openmrs.module.terminologysearchmodule.TerminologySearchActivator</activator>
+	
+	<!-- <updateURL>https://modules.openmrs.org/modules/download/@MODULE_ID@/update.rdf</updateURL> -->
+	<!-- /Base Module Properties -->
+	
+	<require_version>${openmrs.platform.version}</require_version>
+
+	
+	<globalProperty>
+		<property>terminologysearch.defaultFhirServerUrl</property>
+		<defaultValue>https://snowstorm-fhir.snomedtools.org/fhir</defaultValue>
+		<description>
+			Default FHIR terminology server endpoint, used to search for terminology concepts.
+		</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>terminologysearch.system_to_conceptSource_map</property>
+		<defaultValue>[{"system":"http://snomed.info/sct", "conceptSource": "SNOMED CT"},
+		               {"system": "http://loinc.org", "conceptSource": "LOINC"}]</defaultValue>
+		<description>
+			Mapping from FHIR valueSet system property to conceptSource name.
+		</description>
+	</globalProperty>
+	
+	
+	<!-- Required Privileges 
+	<privilege>
+		<name>Form Entry</name>
+		<description>Allows user to access Form Entry pages/functions</description>
+	</privilege>
+	 /Required Privileges -->
+
+
+	<!-- Required Global Properties 
+	<globalProperty>
+		<property>@MODULE_ID@.someProperty</property>
+		<defaultValue></defaultValue>
+		<description>
+			A description of the global property goes here.  The description
+			should explain enough for administrators to understand the purpose
+			and possible values for the global property.
+		</description>
+	</globalProperty>
+	/Required Global Properties -->
+	
+	<!--
+	<dwr>
+		<allow>
+			<create creator="new" javascript="DWRFormEntryService">
+				<param name="class" value="org.openmrs.module.@MODULE_ID@.web.DWRFormEntryService"/>
+				<include method="enterForm"/>
+			</create>
+		</allow>
+
+		<signatures>
+			<![CDATA[
+			import @MODULE_PACKAGE@.web.DWRFormEntryService;
+			DWRFormEntryService.enterForm(Integer patientId, Integer formId, boolean useEncounter, List<String> fields);
+			]]>
+		</signatures>	
+	</dwr>
+	-->
+	
+	<!-- Servlets -->
+	<!-- Accessed through the url /pageContext()/moduleServlet/<moduleId>/<servlet-name> 
+	<servlet>
+		<servlet-name>formDownload</servlet-name>
+		<servlet-class>@MODULE_PACKAGE@.web.FormDownloadServlet</servlet-class>
+	</servlet>
+	-->
+	<!-- /Servlets -->
+	
+	
+	<!-- Internationalization -->
+	<!-- All message codes should start with @MODULE_ID@.* -->
+	<messages>
+		<lang>en</lang>
+		<file>messages.properties</file>
+	</messages>
+	<!-- /Internationalization -->
+	
+</module>
+
